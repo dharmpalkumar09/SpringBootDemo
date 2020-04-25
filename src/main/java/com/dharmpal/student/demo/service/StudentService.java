@@ -31,13 +31,13 @@ public class StudentService {
     }
 
     public Student createStudent(Student student){
-        student.getAddress();
-
-        Student newStudent = studentRepository.save(student);
-        newStudent.getAddress().getId();
-        newStudent.getAddress().getStudentIds().add(newStudent.getAddress().getId());
-        List<Student> students = studentRepository.findAll();
-        List<Address> address = addressRepository.findAll();
+//        student.getAddress();
+//
+//        Student newStudent = studentRepository.save(student);
+//        newStudent.getAddress().getId();
+//        newStudent.getAddress().getStudentIds().add(newStudent.getAddress().getId());
+//        List<Student> students = studentRepository.findAll();
+//        List<Address> address = addressRepository.findAll();
         return studentRepository.save(student);
 
     }

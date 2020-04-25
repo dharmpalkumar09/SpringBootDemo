@@ -9,7 +9,7 @@ import java.util.List;
 public class Address {
 
     @Id
-
+    @GeneratedValue
     @Column(name = "address_id")
     private Long id;
     private String houseNo;

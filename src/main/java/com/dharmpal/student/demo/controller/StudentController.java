@@ -9,6 +9,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * @author Dharmpal
+ * This class is used to manipulate request from controller
+ *
+ */
+
+
+
 @RestController
 @RequestMapping("/student")
 public class StudentController {
@@ -25,11 +33,26 @@ public class StudentController {
     @GetMapping(value = "/getAll",produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Student> getAll(){
 
+        //TODO:
+
+        /*
+         *
+         *
+         *
+         */
+
+
         return studentService.getAll();
     }
 
     @PostMapping(value = "/create",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
     public Student createStudent(@RequestBody Student student){
+
+
+
+
+
+
         return studentService.createStudent(student);
     }
 
