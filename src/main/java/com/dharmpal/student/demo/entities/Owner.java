@@ -1,6 +1,7 @@
 package com.dharmpal.student.demo.entities;
 
 import com.dharmpal.student.demo.model.Address;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -20,11 +21,12 @@ public class Owner {
     @GeneratedValue
     private Long id;
 
-    @Column(name = "owner_name")
+    @Column(name = "owner_name",nullable = false)
     @NotNull(message = "name can not be null")
     private String name;
 
     @Column(name = "owner_dob")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date dob;
 
     @Column(name = "owner_address")
@@ -32,20 +34,20 @@ public class Owner {
     @NotNull(message = "address can not be null")
     private Address address;
 
-    @Column(name = "owner_id_proof")
+    @Column(name = "owner_id_proof",nullable = false)
     @Embedded
     @NotNull(message = "idproof can not be null")
     private IdProof idproof;
 
-    @Column(name= "owner_contact_no")
+    @Column(name= "owner_contact_no",nullable = false)
     @NotNull(message = "Contact Number  can not be null")
     private String contactNo;
 
-    @Column(name = "owner_pan_card_no")
+    @Column(name = "owner_pan_card_no",nullable = false)
     @NotNull(message = "Pan Card Number  can not be null")
     private String panCardNo;
 
-    @Column(name = "owner_aadhar_no")
+    @Column(name = "owner_aadhar_no",nullable = false)
     @NotNull(message = "Aadhar Number can not be null")
     private String aadharNo;
 
@@ -146,4 +148,23 @@ public class Owner {
     public Timestamp getCreatedTime() { return createdTime; }
 
     public void setCreatedTime(Timestamp createdTime) { this.createdTime = createdTime; }
+
+    @Override
+    public String toString() {
+        return "Owner{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", dob=" + dob +
+                ", address=" + address +
+                ", idproof=" + idproof +
+                ", contactNo='" + contactNo + '\'' +
+                ", panCardNo='" + panCardNo + '\'' +
+                ", aadharNo='" + aadharNo + '\'' +
+                ", emailID='" + emailID + '\'' +
+                ", gstNo='" + gstNo + '\'' +
+                ", rating=" + rating +
+                ", updatedTime=" + updatedTime +
+                ", createdTime=" + createdTime +
+                '}';
+    }
 }

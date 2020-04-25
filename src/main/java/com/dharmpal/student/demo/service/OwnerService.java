@@ -5,6 +5,7 @@ import com.dharmpal.student.demo.repository.OwnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -19,6 +20,10 @@ public class OwnerService {
     }
 
     public Owner creteOwner(Owner owner){
+
+        Timestamp time= new Timestamp(System.currentTimeMillis());
+        owner.setCreatedTime(time);
+        owner.setUpdatedTime(time);
         return ownerRepository.save(owner);
     }
 
