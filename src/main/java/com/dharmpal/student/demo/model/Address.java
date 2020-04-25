@@ -4,14 +4,10 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "address")
+
+@Embeddable
 public class Address {
 
-    @Id
-    @GeneratedValue
-    @Column(name = "address_id")
-    private Long id;
     private String houseNo;
     private String addressLine1;
     private String getAddressLine2;
@@ -19,37 +15,6 @@ public class Address {
     private String district;
     private String state;
     private int pinCode;
-    @OneToOne(mappedBy = "address")
-    private Student student;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Student getStudent() {
-        return student;
-    }
-
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-
-    @Column(name = "student_id_list")
-    @ElementCollection
-    private List<Long> studentIds = new ArrayList<>();
-
-    public List<Long> getStudentIds() {
-        return studentIds;
-    }
-
-    public void setStudentIds(List<Long> studentIds) {
-        this.studentIds = studentIds;
-    }
-
 
     public String getHouseNo() {
         return houseNo;
@@ -57,22 +22,6 @@ public class Address {
 
     public void setHouseNo(String houseNo) {
         this.houseNo = houseNo;
-    }
-
-    @Override
-    public String toString() {
-        return "Address{" +
-                "id=" + id +
-                ", houseNo='" + houseNo + '\'' +
-                ", addressLine1='" + addressLine1 + '\'' +
-                ", getAddressLine2='" + getAddressLine2 + '\'' +
-                ", city='" + city + '\'' +
-                ", district='" + district + '\'' +
-                ", state='" + state + '\'' +
-                ", pinCode=" + pinCode +
-                ", student=" + student +
-                ", studentIds=" + studentIds +
-                '}';
     }
 
     public String getAddressLine1() {
@@ -121,5 +70,18 @@ public class Address {
 
     public void setPinCode(int pinCode) {
         this.pinCode = pinCode;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "houseNo='" + houseNo + '\'' +
+                ", addressLine1='" + addressLine1 + '\'' +
+                ", getAddressLine2='" + getAddressLine2 + '\'' +
+                ", city='" + city + '\'' +
+                ", district='" + district + '\'' +
+                ", state='" + state + '\'' +
+                ", pinCode=" + pinCode +
+                '}';
     }
 }

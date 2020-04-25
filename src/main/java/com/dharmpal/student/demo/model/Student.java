@@ -19,29 +19,6 @@ public class Student {
     @Column(name = "student_college")
     private String college;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "address_id")
-    private Address address;
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", age=" + age +
-                ", lastName='" + lastName + '\'' +
-                ", college='" + college + '\'' +
-                ", address=" + address +
-                '}';
-    }
 
     public Long getId() {
         return id;
@@ -81,5 +58,16 @@ public class Student {
 
     public void setCollege(String college) {
         this.college = college;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", age=" + age +
+                ", lastName='" + lastName + '\'' +
+                ", college='" + college + '\'' +
+                '}';
     }
 }

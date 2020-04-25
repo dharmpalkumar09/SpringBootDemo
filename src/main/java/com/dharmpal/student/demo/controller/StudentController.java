@@ -20,51 +20,51 @@ import java.util.List;
 @RestController
 @RequestMapping("/student")
 public class StudentController {
-
-    @Autowired
-    private StudentService studentService;
-    /*
-    1. create
-    2. readAll, readID
-    3 update
-    4. delete
-     */
-
-    @GetMapping(value = "/getAll",produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Student> getAll(){
-
-        //TODO:
-
-        /*
-         *
-         *
-         *
-         */
-
-
-        return studentService.getAll();
-    }
-
-    @PostMapping(value = "/create",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Student createStudent(@RequestBody Student student){
-
-
-
-
-
-
-        return studentService.createStudent(student);
-    }
-
-    @GetMapping(value = "/getOne/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public Student getOne(@PathVariable Long id){
-
-        return studentService.getOne(id);
-    }
-
-    @PutMapping(value = "update/{id}",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public UpdateStatus updateStudent(@RequestBody Student student,@PathVariable Long id){
-        return studentService.updateStudent(student,id);
-    }
+//
+//    @Autowired
+//    private StudentService studentService;
+//    /*
+//    1. create
+//    2. readAll, readID
+//    3 update
+//    4. delete
+//     */
+//
+//    @GetMapping(value = "/getAll",produces = MediaType.APPLICATION_JSON_VALUE)
+//    public List<Student> getAll(){
+//
+//        //TODO:
+//
+//        /*
+//         *
+//         *
+//         *
+//         */
+//
+//
+//        return studentService.getAll();
+//    }
+//
+//    @PostMapping(value = "/create",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public Student createStudent(@RequestBody Student student){
+//
+//
+//
+//
+//
+//
+//        return studentService.createStudent(student);
+//    }
+//
+//    @GetMapping(value = "/getOne/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+//    public Student getOne(@PathVariable Long id){
+//
+//        return studentService.getOne(id);
+//    }
+//
+//    @PutMapping(value = "update/{id}",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+//    public UpdateStatus updateStudent(@RequestBody Student student,@PathVariable Long id){
+//        return studentService.updateStudent(student,id);
+//    }
 
 }
