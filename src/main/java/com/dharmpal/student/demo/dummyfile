@@ -1,0 +1,12 @@
+
+                id:  id 
+                 houseNo:  houseNo   
+                 addressLine1:  addressLine1   
+                 getAddressLine2:  getAddressLine2   
+                 city:  city   
+                 district:  district   
+                 state:  state   
+                 pinCode:  pinCode 
+                 student:  student 
+                 studentIds:  studentIds 
+                

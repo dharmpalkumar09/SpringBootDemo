@@ -1,18 +1,23 @@
 package com.dharmpal.student.demo.service;
 
+import com.dharmpal.student.demo.model.Address;
 import com.dharmpal.student.demo.model.ErrorMessage;
 import com.dharmpal.student.demo.model.Student;
 import com.dharmpal.student.demo.model.UpdateStatus;
+import com.dharmpal.student.demo.repository.AddressRepository;
 import com.dharmpal.student.demo.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class StudentService {
 
+    @Autowired
+    private AddressRepository addressRepository;
     @Autowired
     private StudentRepository studentRepository;
 
@@ -26,6 +31,13 @@ public class StudentService {
     }
 
     public Student createStudent(Student student){
+        student.getAddress();
+
+        Student newStudent = studentRepository.save(student);
+        newStudent.getAddress().getId();
+        newStudent.getAddress().getStudentIds().add(newStudent.getAddress().getId());
+        List<Student> students = studentRepository.findAll();
+        List<Address> address = addressRepository.findAll();
         return studentRepository.save(student);
 
     }
