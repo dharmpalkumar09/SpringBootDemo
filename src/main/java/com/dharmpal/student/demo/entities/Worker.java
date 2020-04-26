@@ -1,39 +1,66 @@
 package com.dharmpal.student.demo.entities;
 
 import com.dharmpal.student.demo.model.Address;
+import io.swagger.annotations.ApiModel;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.sql.Timestamp;
+import java.util.Objects;
 
+/**
+ * @author Prashant
+ * This class servers as POJO class for Worker_Details table
+ *
+ */
 
+@Entity
+@Table(name = "worker_details")
+@ApiModel(description = "All details about the Worker. ")
 public class Worker {
 
-
+    @GeneratedValue
+    @Id
     private Long id;
-    private String firstNname;
+
+    @Column(name = "worker_first_name")
+    private String firstName;
+
+    @Column(name = "worker_last_name")
     private String lastName;
+
+    @Column(name = "worker_address")
+    @Embedded
     private Address address;
+
+    @Column(name = "worker_id_proof")
+    @Enumerated
     private IdProof idproof;
+
+    @Column(name = "worker_contact_number")
     private String contactNo;
+
+    @Column(name = "worker_rating")
+    @Enumerated
     private Rating rating;
-    private Worktype experise;
+
+    @Column(name = "worker_requirement_type")
+    @Enumerated
+    private Worktype requirementType;
+
+    @Column(name = "worker_total_earning")
     private Long totalEarning;
 
-    @Override
-    public String toString() {
-        return "Worker{" +
-                "id=" + id +
-                ", firstNname='" + firstNname + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", address=" + address +
-                ", idproof=" + idproof +
-                ", contactNo='" + contactNo + '\'' +
-                ", rating=" + rating +
-                ", experise=" + experise +
-                ", totalEarning=" + totalEarning +
-                '}';
-    }
+    @Column(name = "worker_email_id")
+    @NotNull(message = "Email Id can not be null")
+    private String emailID;
+
+    @Column(name = "updated_time")
+    private Timestamp updatedTime;
+
+    @Column(name = "created_time")
+    private Timestamp createdTime;
+
 
     public Long getId() {
         return id;
@@ -43,12 +70,12 @@ public class Worker {
         this.id = id;
     }
 
-    public String getFirstNname() {
-        return firstNname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstNname(String firstNname) {
-        this.firstNname = firstNname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -91,12 +118,12 @@ public class Worker {
         this.rating = rating;
     }
 
-    public Worktype getExperise() {
-        return experise;
+    public Worktype getRequirementType() {
+        return requirementType;
     }
 
-    public void setExperise(Worktype experise) {
-        this.experise = experise;
+    public void setRequirementType(Worktype requirementType) {
+        this.requirementType = requirementType;
     }
 
     public Long getTotalEarning() {
@@ -105,5 +132,71 @@ public class Worker {
 
     public void setTotalEarning(Long totalEarning) {
         this.totalEarning = totalEarning;
+    }
+
+    public String getEmailID() {
+        return emailID;
+    }
+
+    public void setEmailID(String emailID) {
+        this.emailID = emailID;
+    }
+
+    public Timestamp getUpdatedTime() {
+        return updatedTime;
+    }
+
+    public void setUpdatedTime(Timestamp updatedTime) {
+        this.updatedTime = updatedTime;
+    }
+
+    public Timestamp getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Timestamp createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Worker worker = (Worker) o;
+        return Objects.equals(id, worker.id) &&
+                Objects.equals(firstName, worker.firstName) &&
+                Objects.equals(lastName, worker.lastName) &&
+                Objects.equals(address, worker.address) &&
+                Objects.equals(idproof, worker.idproof) &&
+                Objects.equals(contactNo, worker.contactNo) &&
+                rating == worker.rating &&
+                requirementType == worker.requirementType &&
+                Objects.equals(totalEarning, worker.totalEarning) &&
+                Objects.equals(emailID, worker.emailID) &&
+                Objects.equals(updatedTime, worker.updatedTime) &&
+                Objects.equals(createdTime, worker.createdTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, address, idproof, contactNo, rating, requirementType, totalEarning, emailID, updatedTime, createdTime);
+    }
+
+    @Override
+    public String toString() {
+        return "Worker{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address=" + address +
+                ", idproof=" + idproof +
+                ", contactNo='" + contactNo + '\'' +
+                ", rating=" + rating +
+                ", requirementType=" + requirementType +
+                ", totalEarning=" + totalEarning +
+                ", emailID='" + emailID + '\'' +
+                ", updatedTime=" + updatedTime +
+                ", createdTime=" + createdTime +
+                '}';
     }
 }
