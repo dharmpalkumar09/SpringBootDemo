@@ -1,26 +1,61 @@
 package com.dharmpal.student.demo.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.dharmpal.student.demo.enums.LogLevels;
+import com.dharmpal.student.demo.enums.WorkCategory;
+import io.swagger.annotations.ApiModel;
+
+import javax.persistence.*;
+import java.util.Date;
 
 
+@Entity
+@Table(name = "work_details")
+@ApiModel(description = "All details about the Owner. ")
 public class Work {
 
+    @GeneratedValue
+    @Id
     private Long Id;
-    private Worktype workType;
+
+    @Column(name = "work_type")
+    private LogLevels.Worktype workType;
+
+    @Column(name = "work_description")
     private String description;
+
+    @Column(name = "work_location")
     private String workLocation;
-    private String duration;
+
+    @Column(name = "work_duration")
+    private int duration;
+
+    @Column(name = "work_category")
+    @Enumerated
     private WorkCategory workCategory;
-    private Owner owner;
+
+    @Column(name = "work_created_by_name")
+    private String createdByName;
+
+    @Column(name = "work_created_by_id")
+    private String createdById;
+
+    @Column(name = "man_days_estimation")
     private int manDaysEstimation; // number of days work will get finished
+
+    @Column(name = "work_cost_estimation")
     private int costEstimation;
-    private Paymentmode paymentMode;
+
+    @Column(name = "payment_mode")
+    private LogLevels.Paymentmode paymentMode;
+
+    @Column(name = "other_info")
     private  String otherInfo;
-    private String landmark;
 
+    @Column(name = "work_created_on")
+    private Date createdOn;
 
+    @Column(name = "work_valid_up_to")
+    private  Date validUpto;
 
     public Long getId() {
         return Id;
@@ -30,11 +65,11 @@ public class Work {
         Id = id;
     }
 
-    public Worktype getWorkType() {
+    public LogLevels.Worktype getWorkType() {
         return workType;
     }
 
-    public void setWorkType(Worktype workType) {
+    public void setWorkType(LogLevels.Worktype workType) {
         this.workType = workType;
     }
 
@@ -54,11 +89,11 @@ public class Work {
         this.workLocation = workLocation;
     }
 
-    public String getDuration() {
+    public int getDuration() {
         return duration;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 
@@ -70,17 +105,29 @@ public class Work {
         this.workCategory = workCategory;
     }
 
-    public Owner getOwner() {
-        return owner;
+    public String getCreatedByName() {
+        return createdByName;
     }
 
-    public void setOwner(Owner owner) {
-        this.owner = owner;
+    public void setCreatedByName(String createdByName) {
+        this.createdByName = createdByName;
     }
 
-    public int getManDaysEstimation() { return manDaysEstimation; }
+    public String getCreatedById() {
+        return createdById;
+    }
 
-    public void setManDaysEstimation(int manDaysEstimation) { this.manDaysEstimation = manDaysEstimation; }
+    public void setCreatedById(String createdById) {
+        this.createdById = createdById;
+    }
+
+    public int getManDaysEstimation() {
+        return manDaysEstimation;
+    }
+
+    public void setManDaysEstimation(int manDaysEstimation) {
+        this.manDaysEstimation = manDaysEstimation;
+    }
 
     public int getCostEstimation() {
         return costEstimation;
@@ -90,9 +137,13 @@ public class Work {
         this.costEstimation = costEstimation;
     }
 
-    public Paymentmode getPaymentMode() { return paymentMode; }
+    public LogLevels.Paymentmode getPaymentMode() {
+        return paymentMode;
+    }
 
-    public void setPaymentMode(Paymentmode paymentMode) { this.paymentMode = paymentMode; }
+    public void setPaymentMode(LogLevels.Paymentmode paymentMode) {
+        this.paymentMode = paymentMode;
+    }
 
     public String getOtherInfo() {
         return otherInfo;
@@ -102,14 +153,6 @@ public class Work {
         this.otherInfo = otherInfo;
     }
 
-    public String getLandmark() {
-        return landmark;
-    }
-
-    public void setLandmark(String landmark) {
-        this.landmark = landmark;
-    }
-
     @Override
     public String toString() {
         return "Work{" +
@@ -117,14 +160,14 @@ public class Work {
                 ", workType=" + workType +
                 ", description='" + description + '\'' +
                 ", workLocation='" + workLocation + '\'' +
-                ", duration='" + duration + '\'' +
+                ", duration=" + duration +
                 ", workCategory=" + workCategory +
-                ", owner=" + owner +
+                ", createdByName='" + createdByName + '\'' +
+                ", createdById='" + createdById + '\'' +
                 ", manDaysEstimation=" + manDaysEstimation +
                 ", costEstimation=" + costEstimation +
                 ", paymentMode=" + paymentMode +
                 ", otherInfo='" + otherInfo + '\'' +
-                ", landmark='" + landmark + '\'' +
                 '}';
     }
 }

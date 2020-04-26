@@ -15,6 +15,7 @@ public class Address {
     private String district;
     private String state;
     private int pinCode;
+    private String landmark;
 
     public String getHouseNo() {
         return houseNo;
@@ -72,6 +73,14 @@ public class Address {
         this.pinCode = pinCode;
     }
 
+    public String getLandmark() {
+        return landmark;
+    }
+
+    public void setLandmark(String landmark) {
+        this.landmark = landmark;
+    }
+
     @Override
     public String toString() {
         return "Address{" +
@@ -82,6 +91,7 @@ public class Address {
                 ", district='" + district + '\'' +
                 ", state='" + state + '\'' +
                 ", pinCode=" + pinCode +
+                ", landmark='" + landmark + '\'' +
                 '}';
     }
 }

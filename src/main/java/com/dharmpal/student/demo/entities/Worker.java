@@ -1,5 +1,6 @@
 package com.dharmpal.student.demo.entities;
 
+import com.dharmpal.student.demo.enums.LogLevels;
 import com.dharmpal.student.demo.model.Address;
 import io.swagger.annotations.ApiModel;
 
@@ -46,10 +47,13 @@ public class Worker {
 
     @Column(name = "worker_requirement_type")
     @Enumerated
-    private Worktype requirementType;
+    private LogLevels.Worktype requirementType;
 
     @Column(name = "worker_total_earning")
     private Long totalEarning;
+
+    @Column(name = "worker_per_day_cost")
+    private Long  perDayCost;
 
     @Column(name = "worker_email_id")
     @NotNull(message = "Email Id can not be null")
@@ -118,11 +122,11 @@ public class Worker {
         this.rating = rating;
     }
 
-    public Worktype getRequirementType() {
+    public LogLevels.Worktype getRequirementType() {
         return requirementType;
     }
 
-    public void setRequirementType(Worktype requirementType) {
+    public void setRequirementType(LogLevels.Worktype requirementType) {
         this.requirementType = requirementType;
     }
 
@@ -133,6 +137,10 @@ public class Worker {
     public void setTotalEarning(Long totalEarning) {
         this.totalEarning = totalEarning;
     }
+
+    public Long getPerDayCost() { return perDayCost; }
+
+    public void setPerDayCost(Long perDayCost) { this.perDayCost = perDayCost; }
 
     public String getEmailID() {
         return emailID;

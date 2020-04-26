@@ -16,4 +16,19 @@ public enum LogLevels {
     LogLevels(String status) {
         this.status = status;
     }
+
+    public enum Worktype {
+        URGENT,
+        REGULAR
+    }
+
+    public enum Paymentmode {
+        /*
+        1. Cash
+        2. Online
+        3. Cheque
+        4. UPI
+         */
+        CASH,ONLINE,CHEQUE,UPI
+    }
 }

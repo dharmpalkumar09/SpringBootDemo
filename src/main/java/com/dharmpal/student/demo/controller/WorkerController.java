@@ -56,7 +56,7 @@ public class WorkerController {
 
     @GetMapping(value = "/getOne/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Result<String,Owner> getOwnerById(@PathVariable Long id){
-        log.info("/owner/geOne  endpoint is invoked"+ id);
+        log.info("/worker/getOne  endpoint is invoked"+ id);
         Result result = new Result(("id="+ id));
         try{
             result.setOutputObject(workerService.getWorkerById(id));

@@ -1,5 +1,7 @@
 package com.dharmpal.student.demo.entities;
 
+import com.dharmpal.student.demo.enums.Idtype;
+
 import javax.persistence.Embeddable;
 import java.sql.Blob;
 
