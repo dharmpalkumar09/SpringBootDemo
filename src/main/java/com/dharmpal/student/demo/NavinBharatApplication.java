@@ -18,10 +18,10 @@ public class NavinBharatApplication {
 	public static void main(String[] args) {
 
 		try {
-			ConfigurableApplicationContext app = SpringApplication.run(NavinBharatApplication.class);
+			ConfigurableApplicationContext app = SpringApplication.run(NavinBharatApplication.class,args);
 			logger.info(LogLevels.INFO.getStatus(),"*******************NavinBharat Application Started**********");
 			NavinBharatAppContext.setApplicationContext(app);
-//			log.info(LogLevels.INFO.getStatus(),"*******************NavinBharat Application Started**********");
+
 //			SpringApplication.run(NavinBharatApplication.class, args);
 
 		}catch (Exception e){

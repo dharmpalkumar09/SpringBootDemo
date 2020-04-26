@@ -7,6 +7,7 @@ import com.dharmpal.student.demo.exceptions.OwnerServiceException;
 import com.dharmpal.student.demo.model.Result;
 import com.dharmpal.student.demo.service.OwnerService;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/owner")
+@Api(value = "Owner Management System")
 public class OwnerController {
 
     @Autowired

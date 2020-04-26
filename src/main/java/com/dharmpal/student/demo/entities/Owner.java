@@ -2,6 +2,7 @@ package com.dharmpal.student.demo.entities;
 
 import com.dharmpal.student.demo.model.Address;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,6 +17,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "Owner_Details")
+@ApiModel(description = "All details about the Owner. ")
 public class Owner {
     @Id
     @GeneratedValue
