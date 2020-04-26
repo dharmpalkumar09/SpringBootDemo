@@ -153,6 +153,22 @@ public class Work {
         this.otherInfo = otherInfo;
     }
 
+    public Date getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(Date createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public Date getValidUpto() {
+        return validUpto;
+    }
+
+    public void setValidUpto(Date validUpto) {
+        this.validUpto = validUpto;
+    }
+
     @Override
     public String toString() {
         return "Work{" +
@@ -168,6 +184,8 @@ public class Work {
                 ", costEstimation=" + costEstimation +
                 ", paymentMode=" + paymentMode +
                 ", otherInfo='" + otherInfo + '\'' +
+                ", createdOn=" + createdOn +
+                ", validUpto=" + validUpto +
                 '}';
     }
 }
