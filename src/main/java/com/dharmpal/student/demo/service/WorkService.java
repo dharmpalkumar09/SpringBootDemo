@@ -24,7 +24,7 @@ public class WorkService {
     public Work getWorkById(Long id) throws OwnerServiceException {
         return workRepository.findById(id).get();
     }
-    public Work creteOwner(Work work){
+    public Work creteWork(Work work){
 
         Timestamp time= new Timestamp(System.currentTimeMillis());
 //        work.setCreatedTime(time);

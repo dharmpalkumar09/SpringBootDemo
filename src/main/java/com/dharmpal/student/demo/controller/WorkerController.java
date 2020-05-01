@@ -37,7 +37,7 @@ public class WorkerController {
 
 
     @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Result<String,Owner> getListOfOwners(){
+    public Result<String,Owner> getListOfWorkers(){
         log.info("/worker/getAll  endpoint is invoked");
         Result result = new Result("get all");
         try {
@@ -55,7 +55,7 @@ public class WorkerController {
     }
 
     @GetMapping(value = "/getOne/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Result<String,Owner> getOwnerById(@PathVariable Long id){
+    public Result<String,Owner> getWorkerById(@PathVariable Long id){
         log.info("/worker/getOne  endpoint is invoked"+ id);
         Result result = new Result(("id="+ id));
         try{
@@ -73,7 +73,7 @@ public class WorkerController {
         return result;
     }
     @PostMapping(value = "/create",produces = MediaType.APPLICATION_JSON_VALUE ,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Worker creteOwner( @RequestBody Worker worker){
+    public Worker creteWorker( @RequestBody Worker worker){
         log.info("/worker/create  endpoint is invoked");
         Result result = new Result(worker);
 

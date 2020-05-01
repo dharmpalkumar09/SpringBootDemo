@@ -29,7 +29,7 @@ public class WorkController {
 
 
     @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Result<String, Work> getListOfOwners(){
+    public Result<String, Work> getListOfWorks(){
         log.info("/work/getAll  endpoint is invoked");
         Result result = new Result("get all");
         try {
@@ -65,11 +65,11 @@ public class WorkController {
         return result;
     }
     @PostMapping(value = "/create",produces = MediaType.APPLICATION_JSON_VALUE ,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Work creteOwner( @RequestBody Work work){
+    public Work creteWork( @RequestBody Work work){
         log.info("/work/create  endpoint is invoked");
         Result result = new Result(work);
 
-        return workService.creteOwner(work);
+        return workService.creteWork(work);
     }
 
 
