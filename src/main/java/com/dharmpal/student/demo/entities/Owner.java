@@ -69,6 +69,10 @@ public class Owner {
 
     @Column(name = "created_time")
     private Timestamp createdTime;
+
+    @Column(name = "isActive")
+    private String isActive;
+
     public Long getId() {
         return id;
     }
@@ -151,6 +155,10 @@ public class Owner {
 
     public void setCreatedTime(Timestamp createdTime) { this.createdTime = createdTime; }
 
+    public String getIsActive() { return isActive; }
+
+    public void setIsActive(String isActive) { this.isActive = isActive; }
+
     @Override
     public String toString() {
         return "Owner{" +
@@ -167,6 +175,7 @@ public class Owner {
                 ", rating=" + rating +
                 ", updatedTime=" + updatedTime +
                 ", createdTime=" + createdTime +
+                ", isActive='" + isActive + '\'' +
                 '}';
     }
 }

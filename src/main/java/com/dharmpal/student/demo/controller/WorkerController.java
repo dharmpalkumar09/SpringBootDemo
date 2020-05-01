@@ -45,11 +45,11 @@ public class WorkerController {
         }catch (OwnerServiceException ex1){
             log.error("Exception occured while searching alerts", ex1);
             result.setSuccess(false);
-            result.getMessages().add(ex1.getMessage());
+            result.getErrors().add(ex1.getMessage());
         }catch (Exception ex2){
             log.error("unexpected error occured while searching owners",ex2);
             result.setSuccess(false);
-            result.getMessages().add(ex2.getMessage());
+            result.getErrors().add(ex2.getMessage());
         }
         return result;
     }
@@ -63,11 +63,11 @@ public class WorkerController {
         }catch (OwnerServiceException ex1){
             log.error("Owner details was not found for id :"+id+"", ex1);
             result.setSuccess(false);
-            result.getMessages().add(ex1.getMessage());
+            result.getErrors().add(ex1.getMessage());
         }catch (Exception ex2){
             log.error("unexpected error occurred while searching owners",ex2);
             result.setSuccess(false);
-            result.getMessages().add(ex2.getMessage());
+            result.getErrors().add(ex2.getMessage());
         }
 
         return result;
@@ -77,7 +77,7 @@ public class WorkerController {
         log.info("/worker/create  endpoint is invoked");
         Result result = new Result(worker);
 
-        return workerService.creteOwner(worker);
+        return workerService.creteWorker(worker);
     }
 
 }

@@ -10,8 +10,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -40,11 +42,11 @@ public class OwnerController {
         }catch (OwnerServiceException ex1){
             log.error("Exception occured while searching alerts", ex1);
             result.setSuccess(false);
-            result.getMessages().add(ex1.getMessage());
+            result.getErrors().add(ex1.getMessage());
         }catch (Exception ex2){
             log.error("unexpected error occured while searching owners",ex2);
             result.setSuccess(false);
-            result.getMessages().add(ex2.getMessage());
+            result.getErrors().add(ex2.getMessage());
         }
         return result;
     }
@@ -58,23 +60,39 @@ public class OwnerController {
         }catch (OwnerServiceException ex1){
             log.error("Owner details was not found for id :"+id+"", ex1);
             result.setSuccess(false);
-            result.getMessages().add(ex1.getMessage());
+            result.getErrors().add(ex1.getMessage());
         }catch (Exception ex2){
             log.error("unexpected error occured while searching owners",ex2);
             result.setSuccess(false);
-            result.getMessages().add(ex2.getMessage());
+            result.getErrors().add(ex2.getMessage());
         }
 
         return result;
     }
     @PostMapping(value = "/create",produces = MediaType.APPLICATION_JSON_VALUE ,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Owner creteOwner( @RequestBody Owner owner){
+    public Owner creteOwner( @RequestBody Owner owner) {
         log.info("/owner/create  endpoint is invoked");
         Result result = new Result(owner);
+        try{
+            result.setOutputObject(ownerService.creteOwner(owner));
+        }catch (OwnerServiceException ex){
+            log.error("Exception occured while creating owner",ex);
+            result.setSuccess(false);
+            result.getErrors().addAll(ex.getErrors());
+        }
 
-        return ownerService.creteOwner(owner);
+        return (Owner)result.getOutputObject();
+
     }
 
+//    @RequestMapping(value = "/signIn", method = RequestMethod.POST)
+//    public ResponseEntity<Owner> signIn(@RequestBody  Owner owner,
+//                                        HttpSession session) {
+//        Owner ownerNew = ownerService.getUser(signInUser.getEmail(), signInUser.getPassword());
+//        session.setAttribute("user", user);
+//        DataUser dataUser = new DataUser((User) session.getAttribute("user"));
+//        return ResponseEntity.ok(dataUser);
+//    }
 
 
 }

@@ -1,5 +1,6 @@
 package com.dharmpal.student.demo.controller;
 
+import com.dharmpal.student.demo.entities.Owner;
 import com.dharmpal.student.demo.entities.Work;
 import com.dharmpal.student.demo.exceptions.OwnerServiceException;
 import com.dharmpal.student.demo.model.Result;
@@ -10,6 +11,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Prashant
@@ -37,11 +42,11 @@ public class WorkController {
         }catch (OwnerServiceException ex1){
             log.error("Exception occured while searching alerts", ex1);
             result.setSuccess(false);
-            result.getMessages().add(ex1.getMessage());
+            result.getErrors().add(ex1.getMessage());
         }catch (Exception ex2){
             log.error("unexpected error occured while searching owners",ex2);
             result.setSuccess(false);
-            result.getMessages().add(ex2.getMessage());
+            result.getErrors().add(ex2.getMessage());
         }
         return result;
     }
@@ -55,21 +60,42 @@ public class WorkController {
         }catch (OwnerServiceException ex1){
             log.error("Owner details was not found for id :"+id+"", ex1);
             result.setSuccess(false);
-            result.getMessages().add(ex1.getMessage());
+            result.getErrors().add(ex1.getMessage());
         }catch (Exception ex2){
             log.error("unexpected error occured while searching owners",ex2);
             result.setSuccess(false);
-            result.getMessages().add(ex2.getMessage());
+            result.getErrors().add(ex2.getMessage());
         }
 
         return result;
     }
     @PostMapping(value = "/create",produces = MediaType.APPLICATION_JSON_VALUE ,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Work creteWork( @RequestBody Work work){
-        log.info("/work/create  endpoint is invoked");
-        Result result = new Result(work);
+    public Result<String,Work> creteWork( @RequestBody Work work){
 
-        return workService.creteWork(work);
+        log.info("/work/create  endpoint is invoked");
+        Result result = new Result("For ownerId:"+work.getCreatedById());
+
+        try{
+            result.setOutputObject(workService.creteWork(work));
+        }catch (OwnerServiceException ex){
+            log.error("Exception occured while creating Work",ex);
+            result.setSuccess(false);
+            result.setErrors(ex.getErrors());
+            result.setMessage(ex.getMessage());
+        }catch (Exception ex1){
+            log.error("Exception occured while creating Work",ex1);
+            result.setSuccess(false);
+            List<String> msg= new ArrayList<>();
+            msg.add("Owner with given id:"+work.getCreatedById()+ " does not exist");
+            result.setErrors(msg);
+            result.setMessage(ex1.getMessage());
+        }
+
+        if(result.getErrors().size()==0){
+            result.setMessage("Work created successfully ");
+        }
+        return result;
+
     }
 
 

@@ -10,12 +10,14 @@ public class Result<I,O> implements Serializable {
     private I inputObject;
     private O outputObject;
     private boolean isSuccess;
-    private List<String> messages;
+    private List<String> errors;
+    private String message;
 
     public Result(I inputObject){
        this.inputObject = inputObject;
        this.isSuccess= true;
-       this.messages = new LinkedList<>();
+       this.errors = new LinkedList<>();
+       this.message=null;
     }
 
     public I getInputObject() {
@@ -42,12 +44,20 @@ public class Result<I,O> implements Serializable {
         isSuccess = success;
     }
 
-    public List<String> getMessages() {
-        return messages;
+    public List<String> getErrors() {
+        return errors;
     }
 
-    public void setMessages(List<String> messages) {
-        this.messages = messages;
+    public void setErrors(List<String> errors) {
+        this.errors = errors;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     @Override
@@ -58,12 +68,13 @@ public class Result<I,O> implements Serializable {
         return isSuccess == result.isSuccess &&
                 Objects.equals(inputObject, result.inputObject) &&
                 Objects.equals(outputObject, result.outputObject) &&
-                Objects.equals(messages, result.messages);
+                Objects.equals(errors, result.errors) &&
+                Objects.equals(message, result.message);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(inputObject, outputObject, isSuccess, messages);
+        return Objects.hash(inputObject, outputObject, isSuccess, errors, message);
     }
 
     @Override
@@ -72,7 +83,8 @@ public class Result<I,O> implements Serializable {
                 "inputObject=" + inputObject +
                 ", outputObject=" + outputObject +
                 ", isSuccess=" + isSuccess +
-                ", messages=" + messages +
+                ", errors=" + errors +
+                ", message='" + message + '\'' +
                 '}';
     }
 }

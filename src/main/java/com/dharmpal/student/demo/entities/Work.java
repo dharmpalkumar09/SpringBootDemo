@@ -57,6 +57,9 @@ public class Work {
     @Column(name = "work_valid_up_to")
     private  Date validUpto;
 
+    @Column(name = "is_active")
+    private String isActive;
+
     public Long getId() {
         return Id;
     }
@@ -169,6 +172,14 @@ public class Work {
         this.validUpto = validUpto;
     }
 
+    public String getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(String isActive) {
+        this.isActive = isActive;
+    }
+
     @Override
     public String toString() {
         return "Work{" +
@@ -186,6 +197,7 @@ public class Work {
                 ", otherInfo='" + otherInfo + '\'' +
                 ", createdOn=" + createdOn +
                 ", validUpto=" + validUpto +
+                ", isActive='" + isActive + '\'' +
                 '}';
     }
 }
