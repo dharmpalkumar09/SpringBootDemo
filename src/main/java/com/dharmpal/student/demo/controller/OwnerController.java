@@ -10,10 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpSession;
 
 
 /**
@@ -85,14 +82,7 @@ public class OwnerController {
 
     }
 
-//    @RequestMapping(value = "/signIn", method = RequestMethod.POST)
-//    public ResponseEntity<Owner> signIn(@RequestBody  Owner owner,
-//                                        HttpSession session) {
-//        Owner ownerNew = ownerService.getUser(signInUser.getEmail(), signInUser.getPassword());
-//        session.setAttribute("user", user);
-//        DataUser dataUser = new DataUser((User) session.getAttribute("user"));
-//        return ResponseEntity.ok(dataUser);
-//    }
+
 
 
 }
